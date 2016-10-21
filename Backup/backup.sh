@@ -6,6 +6,7 @@ mysqlpw="AAAAAAAAAA"
 
 mkdir -p $backup/$date/www
 rsync -ax --delete --exclude='.git*' --exclude='misc/*' --link-dest=$backup/current/www/ /var/www/ $backup/$date/www/
+rsync -ax --delete --link-dest=$backup/current/torrents/ /var/torrents/ $backup/$date/torrents/
 mysqldump --single-transaction --password="${mysqlpw}" gazelle | gzip -c > $backup/$date/gazelle.sql.gz
 
 rm $backup/current
